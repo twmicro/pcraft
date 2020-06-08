@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#P#",
+        " / "
+    ],
+    "key": {
+        "#": {
+            "item": "practical:rainbow_block"
+        },
+        "P": {
+            "item": "practical:varrack"
+        },
+        "/": {
+            "item": "minecraft:blaze_rod"
+        }
+    },
+    "result": {
+        "item": "practical:god_sword",
+        "count": 1
+    }
+}

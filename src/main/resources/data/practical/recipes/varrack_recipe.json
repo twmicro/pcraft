@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "L#E",
+        "LEE"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"
+        },
+        "L": {
+            "item": "minecraft:lapis_lazuli"
+        },
+        "E": {
+            "item": "minecraft:emerald"
+        }
+    },
+    "result": {
+        "item": "practical:varrack",
+        "count": 1
+    }
+}

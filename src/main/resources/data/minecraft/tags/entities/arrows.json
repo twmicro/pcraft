@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "practical:hook_arrow_entity",
+    "practical:lightning_arrow",
+    "practical:teleporting_arrow"
+  ]
+}

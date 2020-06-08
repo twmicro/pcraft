@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "practical:blocks/ruby_block"
+  }
+}

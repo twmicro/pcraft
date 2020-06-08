@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "ETT",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:iron_block"
+        },
+        "E": {
+            "item": "minecraft:emerald_block"
+        },
+        "T": {
+            "item": "minecraft:tnt"
+        }
+    },
+    "result": {
+        "item": "practical:tnt_tank_item",
+        "count": 1
+    }
+}

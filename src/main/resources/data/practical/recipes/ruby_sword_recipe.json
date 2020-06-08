@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " p ",
+        "DpD",
+        " / "
+    ],
+    "key": {
+        "p": {
+            "item": "practical:ruby_ingot"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "practical:ruby_sword",
+        "count": 1
+    }
+}

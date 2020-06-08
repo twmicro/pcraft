@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PT",
+        "  M"
+    ],
+    "key": {
+        "#": {
+            "item": "practical:emerald_axe"
+        },
+        "P": {
+            "item": "practical:emerald_shovel"
+        },
+        "T": {
+            "item": "practical:emerald_pickaxe"
+        },
+        "M": {
+            "item": "practical:emerald_hoe"
+        }
+    },
+    "result": {
+        "item": "practical:universal_emerald_tool",
+        "count": 1
+    }
+}

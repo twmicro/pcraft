@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "LDL",
+        " E "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:nether_star"
+        },
+        "L": {
+            "item": "minecraft:lava_bucket"
+        },
+        "D": {
+            "item": "minecraft:diamond_sword"
+        },
+        "E": {
+            "item": "minecraft:enchanted_golden_apple"
+        }
+    },
+    "result": {
+        "item": "practical:sword_of_anger",
+        "count": 1
+    }
+}
