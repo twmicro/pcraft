@@ -1,37 +1,25 @@
 package com.twmicro.practical.proxy;
 
 import com.twmicro.practical.PracticalMod;
-import com.twmicro.practical.entities.HookArrowEntity;
 import com.twmicro.practical.entities.renderers.HookArrowRenderer;
 import com.twmicro.practical.entities.renderers.LightningArrowRenderer;
 import com.twmicro.practical.entities.renderers.TNTTankRenderer;
 import com.twmicro.practical.entities.renderers.TeleportingArrowRenderer;
-import com.twmicro.practical.items.ingredients.HookArrowItem;
 import com.twmicro.practical.setup.ModRegistry;
 import com.twmicro.practical.setup.RandomTradeBuilder;
-import net.minecraft.block.DispenserBlock;
+import com.twmicro.practical.structures.pieces.LegendaryBasePiece;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -45,6 +33,7 @@ public class ModSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.HOOK_ARROW_ENTITY.get(), HookArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LIGHTNING_ARROW_ENTITY.get(), LightningArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TELEPORTING_ARROW_ENTITY.get(), TeleportingArrowRenderer::new);
+        PracticalMod.LEGENDARY_BASE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, PracticalMod.BASE_LOC, LegendaryBasePiece.Piece::new);
         try {
             Method createBoolean = ObfuscationReflectionHelper.findMethod(GameRules.BooleanValue.class, "func_223568_b", boolean.class);
             Object boolFalse = createBoolean.invoke(GameRules.BooleanValue.class, false);

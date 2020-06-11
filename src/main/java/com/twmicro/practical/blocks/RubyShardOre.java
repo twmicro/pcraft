@@ -7,6 +7,6 @@ import net.minecraft.block.material.Material;
 
 public class RubyShardOre extends OreBlock {
     public RubyShardOre() {
-        super(BlockItemBase.genProperties(Material.IRON, 5, 6000, SoundType.STONE, 1.5F, 0));
+        super(BlockItemBase.genProperties(Material.IRON, 5, 6000, SoundType.STONE, 0.6F, 0));
     }
 }

@@ -12,20 +12,19 @@ import com.twmicro.practical.items.spawn_wands.TNTTankItem;
 import com.twmicro.practical.items.swords.*;
 import com.twmicro.practical.items.tools.emerald.*;
 import com.twmicro.practical.items.tools.ruby.*;
-import com.twmicro.practical.proxy.ClientProxy;
+import com.twmicro.practical.structures.LegendaryBase;
 import com.twmicro.practical.utils.enums.ModArmorMaterials;
 import net.minecraft.block.Block;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,11 +35,13 @@ public class ModRegistry {
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, PracticalMod.MODID);
     public static final DeferredRegister<EntityType<?>> ENTITIES = new DeferredRegister<>(ForgeRegistries.ENTITIES, PracticalMod.MODID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = new DeferredRegister<>(ForgeRegistries.SOUND_EVENTS, PracticalMod.MODID);
+    public static final DeferredRegister<Feature<?>> FEATURES = new DeferredRegister<>(ForgeRegistries.FEATURES, PracticalMod.MODID);
     public static void init() {
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        FEATURES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
     public static final RegistryObject<Block> VARRACK = BLOCKS.register("varrack", VarrackBlock::new);
     public static final RegistryObject<Item> VARRACK_BLOCK_ITEM = ITEMS.register("varrack", () -> new BlockItemBase(VARRACK.get()));
@@ -123,4 +124,5 @@ public class ModRegistry {
     public static final RegistryObject<SoundEvent> TNT_TANK_SHOT = SOUND_EVENTS.register("entity.tnt_tank.tank_shot", () -> new SoundEvent(new ResourceLocation("practical", "entity.tnt_tank.shot")));
     public static final RegistryObject<SoundEvent> TNT_TANK_EXPLOSION = SOUND_EVENTS.register("entity.tnt_tank.tank_explosion", () -> new SoundEvent(new ResourceLocation("practical", "entity.tnt_tank.explosion")));
     public static final RegistryObject<Item> RUBY_UNIVERSAL_TOOL = ITEMS.register("universal_ruby_tool", UniversalRubyTool::new);
+    public static final RegistryObject<LegendaryBase> BASE_FEATURE = FEATURES.<LegendaryBase>register("legendary_base", () -> new LegendaryBase(NoFeatureConfig::deserialize));
 }

@@ -7,6 +7,6 @@ import net.minecraft.block.material.Material;
 public class VarrackBlock extends Block {
 
     public VarrackBlock() {
-        super(BlockItemBase.genProperties(Material.IRON, 10, 6000F, SoundType.GLASS, 1F, 1));
+        super(BlockItemBase.genProperties(Material.IRON, 10, 6000F, SoundType.GLASS, 0.6F, 1));
     }
 }
