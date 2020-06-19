@@ -2,10 +2,7 @@ package com.twmicro.practical.setup;
 
 import com.twmicro.practical.PracticalMod;
 import com.twmicro.practical.blocks.*;
-import com.twmicro.practical.entities.HookArrowEntity;
-import com.twmicro.practical.entities.LightningArrow;
-import com.twmicro.practical.entities.TNTTankEntity;
-import com.twmicro.practical.entities.TeleportingArrow;
+import com.twmicro.practical.entities.*;
 import com.twmicro.practical.items.food.GodApple;
 import com.twmicro.practical.items.ingredients.*;
 import com.twmicro.practical.items.spawn_wands.TNTTankItem;
@@ -125,4 +122,9 @@ public class ModRegistry {
     public static final RegistryObject<SoundEvent> TNT_TANK_EXPLOSION = SOUND_EVENTS.register("entity.tnt_tank.tank_explosion", () -> new SoundEvent(new ResourceLocation("practical", "entity.tnt_tank.explosion")));
     public static final RegistryObject<Item> RUBY_UNIVERSAL_TOOL = ITEMS.register("universal_ruby_tool", UniversalRubyTool::new);
     public static final RegistryObject<LegendaryBase> BASE_FEATURE = FEATURES.<LegendaryBase>register("legendary_base", () -> new LegendaryBase(NoFeatureConfig::deserialize));
+    public static final RegistryObject<EntityType<TNTArrow>> TNT_ARROW_ENTITY = ENTITIES.register("tnt_arrow", () -> EntityType.Builder.<TNTArrow>create(TNTArrow::new, EntityClassification.CREATURE)
+            .size(1, 1)
+            .setShouldReceiveVelocityUpdates(false)
+            .build("tnt_arrow"));
+    public static final RegistryObject<Item> TNT_ARROW_ITEM = ITEMS.register("tnt_arrow_item", TNTArrowItem::new);
 }

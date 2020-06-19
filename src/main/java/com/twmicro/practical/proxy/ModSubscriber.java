@@ -1,10 +1,7 @@
 package com.twmicro.practical.proxy;
 
 import com.twmicro.practical.PracticalMod;
-import com.twmicro.practical.entities.renderers.HookArrowRenderer;
-import com.twmicro.practical.entities.renderers.LightningArrowRenderer;
-import com.twmicro.practical.entities.renderers.TNTTankRenderer;
-import com.twmicro.practical.entities.renderers.TeleportingArrowRenderer;
+import com.twmicro.practical.entities.renderers.*;
 import com.twmicro.practical.setup.ModRegistry;
 import com.twmicro.practical.setup.RandomTradeBuilder;
 import com.twmicro.practical.structures.pieces.LegendaryBasePiece;
@@ -33,6 +30,7 @@ public class ModSubscriber {
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.HOOK_ARROW_ENTITY.get(), HookArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.LIGHTNING_ARROW_ENTITY.get(), LightningArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TELEPORTING_ARROW_ENTITY.get(), TeleportingArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModRegistry.TNT_ARROW_ENTITY.get(), TNTArrowRenderer::new);
         PracticalMod.LEGENDARY_BASE_PIECE = Registry.register(Registry.STRUCTURE_PIECE, PracticalMod.BASE_LOC, LegendaryBasePiece.Piece::new);
         try {
             Method createBoolean = ObfuscationReflectionHelper.findMethod(GameRules.BooleanValue.class, "func_223568_b", boolean.class);
