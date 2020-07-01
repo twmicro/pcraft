@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "practical:hook_arrow",
+    "practical:lightning_arrow",
+    "practical:teleporting_arrow",
+    "practical:tnt_arrow"
+  ]
+}

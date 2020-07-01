@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "PDP",
+        "MMM"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:rotten_flesh"
+        },
+        "P": {
+            "item": "minecraft:poisonous_potato"
+        },
+        "D": {
+            "item": "minecraft:diamond_sword"
+        },
+        "M": {
+            "item": "minecraft:magma_cream"
+        }
+    },
+    "result": {
+        "item": "practical:poison_sword",
+        "count": 1
+    }
+}

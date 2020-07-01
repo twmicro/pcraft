@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "p p",
+        "p p"
+    ],
+    "key": {
+        "p": {
+            "item": "practical:ruby_ingot"
+        }
+    },
+    "result": {
+        "item": "practical:ruby_boots",
+        "count": 1
+    }
+}

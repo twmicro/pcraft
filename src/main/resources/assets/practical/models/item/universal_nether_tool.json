@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "practical:items/universal_nether_tool"
+  }
+}

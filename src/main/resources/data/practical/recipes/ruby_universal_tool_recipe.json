@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PL",
+        "  K"
+    ],
+    "key": {
+        "#": {
+            "item": "practical:ruby_axe"
+        },
+        "P": {
+            "item": "practical:ruby_shovel"
+        },
+        "L": {
+            "item": "practical:ruby_pickaxe"
+        },
+        "K": {
+            "item": "practical:ruby_hoe"
+        }
+    },
+    "result": {"item":"practical:universal_ruby_tool", "count": 1}
+}

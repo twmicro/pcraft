@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#P#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:emerald"
+        },
+        "P": {
+            "item": "practical:ruby_shard"
+        }
+    },
+    "result": {
+        "item": "practical:ruby_ingot",
+        "count": 1
+    }
+}

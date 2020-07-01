@@ -1,0 +1,26 @@
+{
+	"entity.tnt_tank.idle": {
+		"category": "block",
+		"subtitle": "Tank noises",
+		"sounds": [ {
+			"name": "practical:idle",
+			"stream": true
+		}]
+	},
+	"entity.tnt_tank.explosion": {
+		"category": "block",
+		"subtitle": "Tank blew up",
+		"sounds": [ {
+			"name": "practical:explosion",
+			"stream": true
+		}]
+	},
+	"entity.tnt_tank.shot": {
+		"category": "block",
+		"subtitle": "Tank shoots",
+		"sounds": [ {
+			"name": "practical:shot",
+			"stream": true
+		}]
+	}
+}

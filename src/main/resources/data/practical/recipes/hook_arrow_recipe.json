@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#B#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:arrow"
+        },
+        "B": {
+            "item": "minecraft:beacon"
+        }
+    },
+    "result": {
+        "item": "practical:hook_arrow",
+        "count": 32
+    }
+}

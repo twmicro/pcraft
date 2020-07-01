@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "practical:ruby_shard_ore"
+    },
+    "result": "practical:ruby_shard",
+    "experience": 1.1,
+    "cookingtime": 100
+}

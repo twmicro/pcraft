@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ppp",
+        "p p",
+        "p p"
+    ],
+    "key": {
+        "p": {
+            "item": "practical:ruby_ingot"
+        }
+    },
+    "result": {
+        "item": "practical:ruby_leggings",
+        "count": 1
+    }
+}

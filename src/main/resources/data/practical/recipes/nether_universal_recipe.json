@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#PX",
+        "  N"
+    ],
+    "key": {
+        "#": {
+            "item": "practical:nether_axe"
+        },
+        "P": {
+            "item": "practical:nether_shovel"
+        },
+        "X": {
+            "item": "practical:nether_pickaxe"
+        },
+        "N": {
+            "item": "practical:nether_hoe"
+        }
+    },
+    "result": {
+        "item": "practical:universal_nether_tool",
+        "count": 1
+    }
+}
