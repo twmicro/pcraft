@@ -1,18 +1,11 @@
 package com.twmicro.practical.types;
 
-import com.google.common.collect.ImmutableMap;
 import com.twmicro.practical.entities.*;
-import com.twmicro.practical.utils.interfaces.IRegistryList;
+import com.twmicro.practical.utils.classes.RegistryList;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraftforge.registries.DeferredRegister;
 
-import java.util.Map;
-
-public class ModEntities implements IRegistryList<EntityType<?>> {
-    private static final ImmutableMap.Builder<EntityType<?>, String> REGISTRY_MAP = (new ImmutableMap.Builder<>());
-    private static DeferredRegister<EntityType<?>> DEFERRED_REGISTER = null;
-
+public class ModEntities extends RegistryList<EntityType<?>> {
     public static final EntityType<TNTTank> TNT_TANK = EntityType.Builder.<TNTTank>create(TNTTank::new, EntityClassification.CREATURE)
             .size(1, 1)
             .setShouldReceiveVelocityUpdates(false)
@@ -44,7 +37,7 @@ public class ModEntities implements IRegistryList<EntityType<?>> {
             .build("ruby_piglin");
 
 
-    static
+    public ModEntities()
     {
         add(TNT_TANK, "tnt_tank");
         add(LIGHTNING_ARROW, "lightning_arrow");
@@ -52,26 +45,5 @@ public class ModEntities implements IRegistryList<EntityType<?>> {
         add(TNT_ARROW, "tnt_arrow");
         add(HOOK_ARROW, "hook_arrow");
         add(RUBY_PIGLIN, "ruby_piglin");
-    }
-
-    private static void add(EntityType<?> entity, String name)
-    {
-        REGISTRY_MAP.put(entity, name);
-    }
-
-    @Override
-    public void setDeferredRegister(DeferredRegister<?> register) {
-        DEFERRED_REGISTER = (DeferredRegister<EntityType<?>>) register;
-    }
-
-    @Override
-    public Map<EntityType<?>, String> getRegistryNames() {
-        return REGISTRY_MAP.build();
-    }
-
-    @Override
-    public void register() {
-        Map<EntityType<?>, String> MAP = getRegistryNames();
-        MAP.forEach((entity, name) -> DEFERRED_REGISTER.register(name, () -> entity));
     }
 }

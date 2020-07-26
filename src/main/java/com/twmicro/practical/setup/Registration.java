@@ -9,14 +9,15 @@ import com.twmicro.practical.types.ModSounds;
 import com.twmicro.practical.types.*;
 import com.twmicro.practical.types.not_deferred.ModGamerules;
 import com.twmicro.practical.types.not_deferred.ModKeybindings;
+import com.twmicro.practical.utils.classes.RegistryList;
 import com.twmicro.practical.utils.interfaces.INotDeferredList;
-import com.twmicro.practical.utils.interfaces.IRegistryList;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -32,11 +33,12 @@ public class Registration {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, PracticalMod.MODID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, PracticalMod.MODID);
     public static final DeferredRegister<SensorType<?>> SENSORS = DeferredRegister.create(ForgeRegistries.SENSOR_TYPES, PracticalMod.MODID);
+    public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, PracticalMod.MODID);
 
     public static void init() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ArrayList<DeferredRegister<?>> arrayList = new ArrayList<>();
-        Map<IRegistryList<?>, DeferredRegister<?>> registries = new ImmutableMap.Builder<IRegistryList<?>, DeferredRegister<?>>().
+        Map<RegistryList<?>, DeferredRegister<?>> registries = new ImmutableMap.Builder<RegistryList<?>, DeferredRegister<?>>().
                 put(new ModBlocks(), BLOCKS).
                 put(new ModEntities(), ENTITIES).
                 put(new ModBlockItems(), ITEMS).

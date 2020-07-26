@@ -24,6 +24,18 @@ public enum ModArmorMaterials implements IArmorMaterial {
     }),
     NETHER_ARMOR_MATERIAL(PracticalMod.MODID + ":nether_armor_material", 15, new int[] { 15, 18, 20, 15 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 250F, () -> {
         return Ingredient.fromItems(ModItems.NETHER_INGOT);
+    }),
+    LAVA_ARMOR_MATERIAL(PracticalMod.MODID + ":lava_armor_material", 9, new int[] { 7, 9, 11, 7 }, 10, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 105F, () ->
+    {
+        return Ingredient.fromItems(Items.LAVA_BUCKET);
+    }),
+    STAR_ARMOR_MATERIAL(PracticalMod.MODID + ":star_armor_material", 15, new int[] { 17, 20, 22, 17 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 250F, () ->
+    {
+        return Ingredient.fromItems(Items.NETHER_STAR);
+    }),
+    ENDER_ARMOR_MATERIAL(PracticalMod.MODID + ":ender_armor_material", 9, new int[] { 7, 9, 11, 7 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 105F, () ->
+    {
+        return Ingredient.fromItems(Items.ENDER_EYE);
     });
     private static final int[] MAX_DAMAGE_ARRAY = new int[] { 16, 16, 16, 16 };
     private final String name;
@@ -86,4 +98,6 @@ public enum ModArmorMaterials implements IArmorMaterial {
     public float func_230304_f_() {
         return 0;
     }
+
+
 }

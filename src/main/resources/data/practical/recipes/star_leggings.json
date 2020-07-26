@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "practical:ruby_leggings"
+    },
+    "addition": {
+        "item": "minecraft:nether_star"
+    },
+    "result": {
+        "item": "practical:star_leggings"
+    }
+}

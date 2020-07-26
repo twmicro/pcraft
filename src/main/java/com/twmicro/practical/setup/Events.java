@@ -1,37 +1,30 @@
 package com.twmicro.practical.setup;
 
-import com.twmicro.practical.types.ModEntities;
-import com.twmicro.practical.entities.renderers.*;
-import com.twmicro.practical.types.ModArmor;
-import com.twmicro.practical.types.ModItems;
-import com.twmicro.practical.types.ModToolItems;
-import com.twmicro.practical.types.not_deferred.ModKeybindings;
+import com.twmicro.practical.types.*;
 import com.twmicro.practical.types.not_deferred.ModTrades;
-import com.twmicro.practical.utils.classes.RandomTradeBuilder;
+import com.twmicro.practical.utils.classes.ModHelper;
 import com.twmicro.practical.world.gen.OreGenerator;
-import net.minecraft.client.gui.screen.EditGamerulesScreen;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.merchant.villager.VillagerProfession;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.biome.Biomes;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 public class Events {
-
+    public int tick = -1;
     @SubscribeEvent
     public void onTradesSetup(VillagerTradesEvent event) {
         ModTrades modTrades = new ModTrades();
@@ -48,5 +41,28 @@ public class Events {
     public void setup(final FMLCommonSetupEvent event)
     {
         OreGenerator.setup();
+    }
+
+    @SubscribeEvent
+    public void tick(LivingEvent.LivingUpdateEvent e)
+    {
+            LivingEntity entity = e.getEntityLiving();
+            if (ModHelper.hasLavaArmor(entity)) {
+                entity.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 50, 2));
+            }
+            if (ModHelper.hasStarArmor(entity)) {
+                entity.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.JUMP_BOOST, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.SPEED, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.STRENGTH, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 50, 3));
+                entity.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 50, 3));
+            }
+            if (ModHelper.hasEnderArmor(entity)) {
+                entity.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 50, 2));
+                entity.addPotionEffect(new EffectInstance(Effects.SLOW_FALLING, 50, 2));
+            }
+
     }
 }

@@ -1,22 +1,15 @@
 package com.twmicro.practical.types;
 
-import com.google.common.collect.ImmutableMap;
 import com.twmicro.practical.items.tools.emerald.*;
 import com.twmicro.practical.items.tools.nether.NetherAxe;
 import com.twmicro.practical.items.tools.nether.NetherPickaxe;
 import com.twmicro.practical.items.tools.nether.NetherShovel;
 import com.twmicro.practical.items.tools.nether.NetherUniversal;
 import com.twmicro.practical.items.tools.ruby.*;
-import com.twmicro.practical.utils.interfaces.IRegistryList;
+import com.twmicro.practical.utils.classes.RegistryList;
 import net.minecraft.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
 
-import java.util.Map;
-
-public class ModToolItems implements IRegistryList<Item> {
-    private static final ImmutableMap.Builder<Item, String> REGISTRY_MAP = (new ImmutableMap.Builder<>());
-    private static DeferredRegister<Item> DEFERRED_REGISTER = null;
-
+public class ModToolItems extends RegistryList<Item> {
     public static final Item EMERALD_HOE = new EmeraldHoe();
     public static final Item EMERALD_AXE = new EmeraldAxe();
     public static final Item EMERALD_PICKAXE = new EmeraldPickaxe();
@@ -33,12 +26,7 @@ public class ModToolItems implements IRegistryList<Item> {
     public static final Item NETHER_SHOVEL = new NetherShovel();
     public static final Item NETHER_UNIVERSAL = new NetherUniversal();
 
-    private static void add(Item item, String name)
-    {
-        REGISTRY_MAP.put(item, name);
-    }
-
-    static
+    public ModToolItems()
     {
         add(EMERALD_HOE, "emerald_hoe");
         add(EMERALD_AXE, "emerald_axe");
@@ -55,21 +43,5 @@ public class ModToolItems implements IRegistryList<Item> {
         add(NETHER_PICKAXE, "nether_pickaxe");
         add(NETHER_SHOVEL, "nether_shovel");
         add(NETHER_UNIVERSAL, "universal_nether_tool");
-    }
-
-    @Override
-    public void setDeferredRegister(DeferredRegister<?> register) {
-        DEFERRED_REGISTER = (DeferredRegister<Item>) register;
-    }
-
-    @Override
-    public Map<Item, String> getRegistryNames() {
-        return REGISTRY_MAP.build();
-    }
-
-    @Override
-    public void register() {
-        Map<Item, String> MAP = getRegistryNames();
-        MAP.forEach((item, name) -> DEFERRED_REGISTER.register(name, () -> item));
     }
 }

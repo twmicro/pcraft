@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "practical:ruby_boots"
+    },
+    "addition": {
+        "item": "minecraft:lava_bucket"
+    },
+    "result": {
+        "item": "practical:lava_boots"
+    }
+}

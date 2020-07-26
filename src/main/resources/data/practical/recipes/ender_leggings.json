@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smithing",
+    "base": {
+        "item": "practical:ruby_leggings"
+    },
+    "addition": {
+        "item": "minecraft:ender_eye"
+    },
+    "result": {
+        "item": "practical:ender_leggings"
+    }
+}
