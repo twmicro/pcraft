@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.entity.model.PiglinModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.piglin.AbstractPiglinEntity;
 import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.util.ResourceLocation;
 
@@ -40,6 +41,6 @@ public class RubyPiglinRenderer extends BipedRenderer<MobEntity, RubyPiglinModel
     }
 
     protected boolean func_230495_a_(MobEntity p_230495_1_) {
-        return p_230495_1_ instanceof RubyPiglinEntity && ((RubyPiglinEntity)p_230495_1_).func_234423_eL_();
+        return p_230495_1_ instanceof AbstractPiglinEntity && ((AbstractPiglinEntity)p_230495_1_).func_242336_eL();
     }
 }

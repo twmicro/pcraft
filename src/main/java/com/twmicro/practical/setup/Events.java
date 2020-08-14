@@ -1,12 +1,14 @@
 package com.twmicro.practical.setup;
 
+import com.twmicro.practical.entities.TNTTank;
 import com.twmicro.practical.types.*;
 import com.twmicro.practical.types.not_deferred.ModTrades;
 import com.twmicro.practical.utils.classes.ModHelper;
-import com.twmicro.practical.world.gen.OreGenerator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
@@ -20,6 +22,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 
@@ -33,14 +36,12 @@ public class Events {
     }
 
     public void initialSpawn(FMLLoadCompleteEvent event) {
-        // Add ruby piglin's spawn at Crimson Forest and Nether Wastes
-        Biomes.field_235253_az_.func_235058_a_(ModEntities.RUBY_PIGLIN);
-        Biomes.field_235254_j_.func_235058_a_(ModEntities.RUBY_PIGLIN);
+        GlobalEntityTypeAttributes.put(ModEntities.TNT_TANK, TNTTank.func_234237_fg_().func_233813_a_());
     }
 
     public void setup(final FMLCommonSetupEvent event)
     {
-        OreGenerator.setup();
+        //OreGenerator.setup();
     }
 
     @SubscribeEvent

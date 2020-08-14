@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.piglin.PiglinAction;
 import net.minecraft.entity.monster.piglin.PiglinEntity;
 import net.minecraft.util.math.MathHelper;
 
@@ -60,8 +61,8 @@ public class RubyPiglinModel<T extends MobEntity> extends PlayerModel<T> {
         this.field_239116_b_.rotateAngleZ = ((float)Math.PI / 6F) + MathHelper.cos(f1) * f2;
         if (entityIn.getType() == EntityType.field_233591_ai_) {
             PiglinEntity piglinentity = (PiglinEntity)entityIn;
-            PiglinEntity.Action piglinentity$action = piglinentity.func_234424_eM_();
-            if (piglinentity$action == PiglinEntity.Action.DANCING) {
+            PiglinAction piglinentity$action = piglinentity.func_234424_eM_();
+            if (piglinentity$action == PiglinAction.DANCING) {
                 float f3 = ageInTicks / 60.0F;
                 this.field_239116_b_.rotateAngleZ = ((float)Math.PI / 6F) + ((float)Math.PI / 180F) * MathHelper.sin(f3 * 30.0F) * 10.0F;
                 this.field_239115_a_.rotateAngleZ = (-(float)Math.PI / 6F) - ((float)Math.PI / 180F) * MathHelper.cos(f3 * 30.0F) * 10.0F;
@@ -72,13 +73,13 @@ public class RubyPiglinModel<T extends MobEntity> extends PlayerModel<T> {
                 this.bipedRightArm.rotationPointY = MathHelper.sin(f3 * 40.0F) * 0.5F + 1.5F;
                 this.bipedLeftArm.rotationPointY = MathHelper.sin(f3 * 40.0F) * 0.5F + 1.5F;
                 this.bipedBody.rotationPointY = MathHelper.sin(f3 * 40.0F) * 0.35F;
-            } else if (piglinentity$action == PiglinEntity.Action.ATTACKING_WITH_MELEE_WEAPON && this.swingProgress == 0.0F) {
+            } else if (piglinentity$action == PiglinAction.ATTACKING_WITH_MELEE_WEAPON && this.swingProgress == 0.0F) {
                 this.func_239117_a_(entityIn);
-            } else if (piglinentity$action == PiglinEntity.Action.CROSSBOW_HOLD) {
+            } else if (piglinentity$action == PiglinAction.CROSSBOW_HOLD) {
                 ModelHelper.func_239104_a_(this.bipedRightArm, this.bipedLeftArm, this.bipedHead, !entityIn.isLeftHanded());
-            } else if (piglinentity$action == PiglinEntity.Action.CROSSBOW_CHARGE) {
+            } else if (piglinentity$action == PiglinAction.CROSSBOW_CHARGE) {
                 ModelHelper.func_239102_a_(this.bipedRightArm, this.bipedLeftArm, entityIn, !entityIn.isLeftHanded());
-            } else if (piglinentity$action == PiglinEntity.Action.ADMIRING_ITEM) {
+            } else if (piglinentity$action == PiglinAction.ADMIRING_ITEM) {
                 this.bipedHead.rotateAngleX = 0.5F;
                 this.bipedHead.rotateAngleY = 0.0F;
                 if (entityIn.isLeftHanded()) {
@@ -101,7 +102,7 @@ public class RubyPiglinModel<T extends MobEntity> extends PlayerModel<T> {
     }
 
     protected void func_230486_a_(T p_230486_1_, float p_230486_2_) {
-        if (this.swingProgress > 0.0F && p_230486_1_ instanceof PiglinEntity && ((PiglinEntity)p_230486_1_).func_234424_eM_() == PiglinEntity.Action.ATTACKING_WITH_MELEE_WEAPON) {
+        if (this.swingProgress > 0.0F && p_230486_1_ instanceof PiglinEntity && ((PiglinEntity)p_230486_1_).func_234424_eM_() == PiglinAction.ATTACKING_WITH_MELEE_WEAPON) {
             ModelHelper.func_239103_a_(this.bipedRightArm, this.bipedLeftArm, p_230486_1_, this.swingProgress, p_230486_2_);
         } else {
             super.func_230486_a_(p_230486_1_, p_230486_2_);

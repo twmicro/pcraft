@@ -1,9 +1,7 @@
 package com.twmicro.practical.entities;
 
-import com.twmicro.practical.setup.Events;
 import com.twmicro.practical.types.ModSounds;
 import com.twmicro.practical.types.ModEntities;
-import com.twmicro.practical.types.not_deferred.ModGamerules;
 import com.twmicro.practical.types.not_deferred.ModKeybindings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -14,18 +12,28 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.item.TNTEntity;
+import net.minecraft.entity.passive.horse.AbstractHorseEntity;
 import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
+
+import java.lang.reflect.Field;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
-public class TNTTank extends HorseEntity {
+public class TNTTank extends AbstractHorseEntity {
 
-    public TNTTank(EntityType<? extends HorseEntity> type, World worldIn) {
-        super(type, worldIn);
+    public TNTTank(EntityType<? extends TNTTank> type, World worldIn) {
+        super(ModEntities.TNT_TANK, worldIn);
         setHorseWatchableBoolean(4, true);
         setHorseWatchableBoolean(2, true);
     }
@@ -38,6 +46,11 @@ public class TNTTank extends HorseEntity {
 
     @Override
     public boolean isTame() {
+        return true;
+    }
+
+    @Override
+    public boolean isHorseSaddled() {
         return true;
     }
 
@@ -66,10 +79,6 @@ public class TNTTank extends HorseEntity {
         return MobEntity.func_233666_p_().func_233815_a_(Attributes.field_233818_a_, 200.0D).func_233815_a_(Attributes.field_233821_d_, (double)0.2F);
     }
 
-    @Override
-    public AttributeModifierManager func_233645_dx_() {
-        return new AttributeModifierManager(func_234237_fg_().func_233813_a_());
-    }
 
     public void throwTNT()
     {
@@ -107,6 +116,49 @@ public class TNTTank extends HorseEntity {
     }
 
     @Override
+    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+        ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
+        if (!this.isChild()) {
+            if (this.isTame() && p_230254_1_.isSecondaryUseActive()) {
+                this.openGUI(p_230254_1_);
+                return ActionResultType.func_233537_a_(this.world.isRemote);
+            }
+
+            if (this.isBeingRidden()) {
+                return super.func_230254_b_(p_230254_1_, p_230254_2_);
+            }
+        }
+
+        if (!itemstack.isEmpty()) {
+            if (this.isBreedingItem(itemstack)) {
+                return this.func_241395_b_(p_230254_1_, itemstack);
+            }
+
+            ActionResultType actionresulttype = itemstack.func_111282_a_(p_230254_1_, this, p_230254_2_);
+            if (actionresulttype.isSuccessOrConsume()) {
+                return actionresulttype;
+            }
+
+            if (!this.isTame()) {
+                this.makeMad();
+                return ActionResultType.func_233537_a_(this.world.isRemote);
+            }
+
+            boolean flag = !this.isChild() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE;
+            if (this.isArmor(itemstack) || flag) {
+                this.openGUI(p_230254_1_);
+                return ActionResultType.func_233537_a_(this.world.isRemote);
+            }
+        }
+
+        if (this.isChild()) {
+            return super.func_230254_b_(p_230254_1_, p_230254_2_);
+        } else {
+            this.mountTo(p_230254_1_);
+            return ActionResultType.func_233537_a_(this.world.isRemote);
+        }
+    }
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) { return null; }
 
     @Override
@@ -121,9 +173,27 @@ public class TNTTank extends HorseEntity {
 
     @Override
     protected void registerGoals() {
-        if(world.getGameRules().getBoolean(ModGamerules.ENABLE_TANK_RANDOM_MOVEMENT))
-            super.registerGoals();
-        else
-            this.goalSelector.addGoal(0, new FollowParentGoal(this, 1.0D));
+        try {
+            AtomicBoolean enableTankRandomMovement = new AtomicBoolean(false);
+            Field field = GameRules.class.getDeclaredField("rules");
+            field.setAccessible(true);
+            Map<GameRules.RuleKey<?>, GameRules.RuleValue<?>> rules = (Map<GameRules.RuleKey<?>, GameRules.RuleValue<?>>) field.get(world.getGameRules());
+            rules.forEach((k, v) -> {
+                if(k.func_234911_b_().contains("enableTankRandomMovement")){
+                    enableTankRandomMovement.set(world.getGameRules().getBoolean((GameRules.RuleKey<GameRules.BooleanValue>) k));
+                }
+            });
+
+            if (enableTankRandomMovement.get())
+                super.registerGoals();
+            else
+                this.goalSelector.addGoal(0, new FollowParentGoal(this, 1.0D));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

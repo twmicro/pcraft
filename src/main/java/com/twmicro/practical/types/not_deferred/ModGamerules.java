@@ -7,6 +7,8 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
 import net.minecraft.world.GameRules;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import static com.twmicro.practical.utils.classes.ModReflector.*;
@@ -23,7 +25,13 @@ public class ModGamerules implements INotDeferredList<GameRules.RuleKey<?>> {
     }
     static
     {
-        add(createBoolean(false), GameRules.Category.MOBS, "enableTankRandomMovement");
+        try {
+            add(createBoolean(false), GameRules.Category.MOBS, "enableTankRandomMovement");
+        } catch (InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -32,14 +40,16 @@ public class ModGamerules implements INotDeferredList<GameRules.RuleKey<?>> {
         REGISTRY_MAP.build().forEach((rule, name) ->
             GameRules.func_234903_a_(name, CATEGORIES.get(index), rule)
         );
+
     }
 
-    public static GameRules.RuleType<GameRules.BooleanValue> createBoolean(boolean value)
-    {
-        return (GameRules.RuleType<GameRules.BooleanValue>) invokeMethod(getMethod(GameRules.BooleanValue.class, "func_223568_b", boolean.class), GameRules.BooleanValue.class, value);
+    public static GameRules.RuleType<GameRules.BooleanValue> createBoolean(boolean value) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Method method = GameRules.BooleanValue.class.getDeclaredMethod("create", boolean.class);
+        method.setAccessible(true);
+        return (GameRules.RuleType<GameRules.BooleanValue>) method.invoke(null, value);
     }
     public static GameRules.RuleType<GameRules.IntegerValue> createInteger(int value)
     {
-        return (GameRules.RuleType<GameRules.IntegerValue>) invokeMethod(getMethod(GameRules.IntegerValue.class, "func_223568_b", int.class), GameRules.IntegerValue.class, value);
+        return (GameRules.RuleType<GameRules.IntegerValue>) invokeMethod(getMethod(GameRules.IntegerValue.class, "create", int.class), GameRules.IntegerValue.class, value);
     }
 }
